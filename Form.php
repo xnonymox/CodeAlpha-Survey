@@ -1,5 +1,3 @@
-<?php include("Connection.php");?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -114,43 +112,6 @@ fields.forEach(field => {
 
 
 
-
-<?php
-if(isset($_POST['submit-button']))
-{
-    // Define the SQL query with placeholders
-    $query = "INSERT INTO survey_responses (Name, Email, Mobile, Address, Gender, College, Education, Branch, `Alternate Contact`, Interest) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-    // Prepare the statement
-    $stmt = mysqli_prepare($conn, $query);
-
-    // Bind the parameters
-    mysqli_stmt_bind_param($stmt, "ssisssssis", $name, $email, $mobile, $address, $gender, $college, $education, $branch, $alternateContact, $interest);
-
-    // Get the data from the POST request
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $mobile = (int)$_POST['mobile']; // Cast to integer
-    $address = $_POST['address'];
-    $gender = $_POST['gender'];
-    $college = $_POST['college'];
-    $education = $_POST['education'];
-    $branch = $_POST['branch'];
-    $alternateContact = (int)$_POST['alternateContact']; // Cast to integer
-    $interest = $_POST['interest'];
-
-    // Execute the statement
-    if (mysqli_stmt_execute($stmt)) {
-        echo "Data Inserted into Database";
-    } else {
-        echo "Failed: " . mysqli_error($conn);
-    }
-
-    // Close the statement and the database connection
-    mysqli_stmt_close($stmt);
-    mysqli_close($conn);
-}
-?>
 
 
 
