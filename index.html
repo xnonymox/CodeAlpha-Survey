@@ -66,44 +66,8 @@
     <button id="submit-button" type="submit" name="submit-button">Submit</button>
 </form>
 
-<script>
-// Function to update character count for a field
-function updateLength(fieldId, maxLength, maxDigits = 0) {
-    const field = document.getElementById(fieldId);
-    const lengthDisplay = document.getElementById(`${fieldId}-length`);
 
-    const fieldValue = field.value;
-    const fieldLength = fieldValue.length;
-    const displayText = maxDigits ? `${fieldLength} / ${maxDigits} digits` : `${fieldLength} / ${maxLength} characters`;
-    lengthDisplay.textContent = displayText;
 
-    if (fieldLength > (maxDigits ? maxDigits : maxLength)) {
-        lengthDisplay.style.color = "red";
-    } else {
-        lengthDisplay.style.color = "black";
-    }
-}
-
-// Attach event listeners to update character count in real-time for all fields
-const fields = [
-    { id: "name", maxLength: 40 },
-    { id: "email", maxLength: 200 },
-    { id: "mobile", maxLength: 10, maxDigits: 10 },
-    { id: "college", maxLength: 200 },
-    { id: "education", maxLength: 200 },
-    { id: "branch", maxLength: 200 },
-    { id: "alternate-contact", maxLength: 10, maxDigits: 10 },
-    { id: "interest", maxLength: 200 }
-];
-
-fields.forEach(field => {
-    const { id, maxLength, maxDigits } = field;
-    const inputField = document.getElementById(id);
-    inputField.addEventListener("input", () => updateLength(id, maxLength, maxDigits));
-    updateLength(id, maxLength, maxDigits);
-});
-    
-</script>
 <script src="script.js"></script>
 
 
